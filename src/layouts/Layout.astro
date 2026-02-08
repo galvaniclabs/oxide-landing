@@ -4,9 +4,10 @@ interface Props {
 }
 
 const { title } = Astro.props;
-const description = 'Oxide IDE — The IDE your AI agent can operate. Terminal-native. VSCode extensions. LLM agents debug, inspect, and test alongside you. Built in Rust.';
+const description = 'The terminal-native IDE built for you and your AI to operate as one — same debugger, tests, and git. VSCode extensions. No modal editing. Built in Rust.';
 const url = 'https://oxideide.dev';
-const ogImage = `${url}/og-image.png`;
+const ogImageSquare = `${url}/og-image.png`;
+const ogImageRect = `${url}/og-image-rectangle.png`;
 ---
 
 <!doctype html>
@@ -28,10 +29,10 @@ const ogImage = `${url}/og-image.png`;
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={url} />
-    <meta property="og:image" content={ogImage} />
+    <meta property="og:image" content={ogImageRect} />
     <meta property="og:image:type" content="image/png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="1200" />
+    <meta property="og:image:width" content="2400" />
+    <meta property="og:image:height" content="1260" />
     <meta property="og:image:alt" content="Oxide IDE — A modern IDE that runs in your terminal" />
     <meta property="og:site_name" content="Oxide IDE" />
     <meta property="og:locale" content="en_US" />
@@ -40,7 +41,7 @@ const ogImage = `${url}/og-image.png`;
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Oxide IDE — The IDE your AI agent can operate" />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image" content={ogImageRect} />
 
     <!-- Favicons -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
