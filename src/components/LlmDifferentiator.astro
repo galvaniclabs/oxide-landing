@@ -1,0 +1,48 @@
+---
+const tools = [
+  { name: 'ide.debug.setBreakpoint', desc: 'file, line' },
+  { name: 'ide.debug.inspectVariable', desc: 'name \u2192 value' },
+  { name: 'ide.diff.stageHunk', desc: 'file, hunk' },
+  { name: 'ide.test.run', desc: 'suite \u2192 pass/fail' },
+  { name: 'ide.git.status', desc: '\u2192 modified files' },
+  { name: 'ide.diagnostics.list', desc: '\u2192 errors, warnings' },
+  { name: 'ide.editor.goToDefinition', desc: 'symbol \u2192 location' },
+];
+---
+
+<section class="py-24 md:py-32">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="reveal">
+      <span class="text-xs font-semibold uppercase tracking-[0.2em] text-oxide-accent">
+        The LLM Advantage
+      </span>
+
+      <h2 class="mt-4 text-[clamp(1.8rem,3.5vw,2.4rem)] font-bold leading-tight tracking-tight">
+        Your AI agent is blind.<br />
+        <span class="text-oxide-accent">We gave it eyes.</span>
+      </h2>
+    </div>
+
+    <!-- Toolbox panel -->
+    <div class="reveal mt-10 rounded-lg border border-oxide-border bg-oxide-surface overflow-hidden max-w-3xl">
+      <div class="px-5 py-3 border-b border-oxide-border">
+        <span class="text-xs font-semibold uppercase tracking-[0.15em] text-oxide-text-dim">
+          IDE Toolbox Protocol <span class="text-oxide-text-dim font-normal">(MCP-compatible)</span>
+        </span>
+      </div>
+      <div class="p-5 space-y-2 text-sm">
+        {tools.map((tool) => (
+          <div class="flex items-start gap-3">
+            <span class="text-oxide-accent select-none shrink-0">&rarr;</span>
+            <span class="text-oxide-accent-bright shrink-0 min-w-[260px]">{tool.name}</span>
+            <span class="text-oxide-text-dim">{tool.desc}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <p class="reveal mt-6 text-sm text-oxide-text-mid">
+      Any MCP-compatible agent. Claude Code. OpenCode. Aider. Bring your own.
+    </p>
+  </div>
+</section>

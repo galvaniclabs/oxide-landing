@@ -1,0 +1,47 @@
+---
+import HeroTerminal from './HeroTerminal.astro';
+
+const GITHUB_URL = 'https://github.com/galvaniclabs/oxide';
+const FOUNDING_DOC_URL = 'https://github.com/galvaniclabs/oxide/blob/main/FOUNDING_DOC.md';
+---
+
+<section class="min-h-screen flex items-center pt-14">
+  <div class="max-w-6xl mx-auto px-6 w-full py-16 md:py-24">
+    <div class="reveal">
+      <h1 class="text-[clamp(3rem,7vw,6.5rem)] font-extrabold uppercase leading-[0.95] tracking-[-0.04em]">
+        THE IDE<br />
+        YOUR <span class="text-oxide-accent">AI AGENT</span><br />
+        CAN OPERATE.
+      </h1>
+
+      <p class="mt-8 text-oxide-text-mid text-base md:text-lg max-w-2xl leading-relaxed">
+        A terminal-native IDE where <span class="text-oxide-text font-medium">LLMs set breakpoints,<br class="hidden md:inline" />
+        inspect variables, and run tests</span> — not just edit files.<br />
+        Familiar keybindings. VSCode extensions. Written in Rust.
+      </p>
+
+      <div class="mt-8 flex flex-wrap gap-4">
+        <a
+          href={GITHUB_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 bg-oxide-accent text-oxide-bg font-semibold text-sm px-6 py-3 rounded hover:shadow-accent-glow-lg hover:bg-oxide-accent-bright transition-all"
+        >
+          Star on GitHub &#9733;
+        </a>
+        <a
+          href={FOUNDING_DOC_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 border border-oxide-border text-oxide-text-mid font-medium text-sm px-6 py-3 rounded hover:border-oxide-accent hover:text-oxide-text hover:bg-oxide-hover transition-all"
+        >
+          Founding doc &rarr;
+        </a>
+      </div>
+    </div>
+
+    <div class="mt-12 reveal">
+      <HeroTerminal />
+    </div>
+  </div>
+</section>

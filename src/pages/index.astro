@@ -1,0 +1,51 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Hero from '../components/Hero.astro';
+import ProblemSolution from '../components/ProblemSolution.astro';
+import LlmDifferentiator from '../components/LlmDifferentiator.astro';
+import FeatureCards from '../components/FeatureCards.astro';
+import Architecture from '../components/Architecture.astro';
+import TechStrip from '../components/TechStrip.astro';
+import Cta from '../components/Cta.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+---
+
+<Layout title="Oxide IDE — A modern IDE that runs in your terminal">
+  <Nav />
+  <main>
+    <Hero />
+    <ProblemSolution />
+    <LlmDifferentiator />
+    <FeatureCards />
+    <Architecture />
+    <TechStrip />
+    <Cta />
+  </main>
+  <Footer />
+</Layout>
+
+<script>
+  // Scroll reveal with IntersectionObserver
+  function initScrollReveal() {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+    );
+
+    document.querySelectorAll('.reveal').forEach((el) => {
+      observer.observe(el);
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', initScrollReveal);
+  document.addEventListener('astro:page-load', initScrollReveal);
+</script>

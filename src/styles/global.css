@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+    background-color: #0C1220;
+    color: #E6EDF3;
+  }
+
+  ::selection {
+    background-color: rgba(91, 155, 213, 0.3);
+    color: #E6EDF3;
+  }
+}
+
+/* Terminal cursor blink */
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Typing animation */
+@keyframes typing-cursor {
+  0%, 50% { border-right-color: #5B9BD5; }
+  51%, 100% { border-right-color: transparent; }
+}
+
+.typing-cursor {
+  border-right: 2px solid #5B9BD5;
+  animation: typing-cursor 1s step-end infinite;
+}

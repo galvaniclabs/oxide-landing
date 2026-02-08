@@ -1,0 +1,32 @@
+---
+const features = [
+  {
+    title: 'No modal editing.',
+    description: 'Ctrl+S, Ctrl+Z, Ctrl+P, F5, F12. Full mouse. Zero learning curve.',
+    borderColor: 'border-oxide-accent',
+  },
+  {
+    title: 'VSCode extensions.',
+    description: '50,000+ extensions. Language servers, debuggers, linters. They just work.',
+    borderColor: 'border-oxide-green',
+  },
+  {
+    title: 'Written in Rust.',
+    description: 'Starts in ms. Million-line files. Single binary. No Electron.',
+    borderColor: 'border-oxide-yellow',
+  },
+];
+---
+
+<section class="py-24 md:py-32">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="reveal grid grid-cols-1 md:grid-cols-3 gap-6">
+      {features.map((feature) => (
+        <div class={`border-l-[3px] ${feature.borderColor} bg-oxide-surface/50 rounded-r-lg px-6 py-5`}>
+          <h3 class="font-bold text-oxide-text">{feature.title}</h3>
+          <p class="mt-2 text-sm text-oxide-text-mid leading-relaxed">{feature.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,61 @@
+---
+const layers = [
+  {
+    name: 'TUI Frontend',
+    nameColor: 'text-oxide-accent',
+    details: 'Editor \u00b7 File Tree \u00b7 Terminal \u00b7 Debug \u00b7 Git \u00b7 LLM Agent',
+  },
+  {
+    name: 'IDE Toolbox Protocol',
+    nameColor: 'text-oxide-yellow',
+    details: 'MCP-compatible \u00b7 ide.editor.* \u00b7 ide.debug.* \u00b7 ide.test.*',
+  },
+  {
+    name: 'Core Services',
+    nameColor: 'text-oxide-green',
+    details: 'LSP \u00b7 DAP \u00b7 Tree-sitter \u00b7 gitoxide \u00b7 tokio',
+  },
+  {
+    name: 'Extension Host',
+    nameColor: 'text-oxide-red',
+    details: 'Rust \u2194 Node.js \u00b7 JSON-RPC \u00b7 VSCode API shim',
+  },
+];
+---
+
+<section class="py-24 md:py-32">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="reveal">
+      <span class="text-xs font-semibold uppercase tracking-[0.2em] text-oxide-text-dim">
+        Architecture
+      </span>
+    </div>
+
+    <div class="reveal mt-6 rounded-lg border border-oxide-border overflow-hidden max-w-3xl">
+      <!-- Title bar -->
+      <div class="bg-oxide-titlebar px-4 py-2.5 flex items-center gap-3 border-b border-oxide-border">
+        <div class="flex gap-1.5">
+          <span class="w-3 h-3 rounded-full bg-oxide-red"></span>
+          <span class="w-3 h-3 rounded-full bg-oxide-yellow"></span>
+          <span class="w-3 h-3 rounded-full bg-oxide-green"></span>
+        </div>
+        <span class="text-xs text-oxide-text-dim ml-1">architecture</span>
+      </div>
+
+      <!-- Layers -->
+      <div class="bg-oxide-surface">
+        {layers.map((layer, i) => (
+          <div class:list={[
+            'px-5 py-3.5 flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-6 text-sm',
+            i < layers.length - 1 && 'border-b border-oxide-border',
+          ]}>
+            <span class={`${layer.nameColor} font-semibold shrink-0 sm:min-w-[200px]`}>
+              {layer.name}
+            </span>
+            <span class="text-oxide-text-dim text-xs sm:text-sm">{layer.details}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

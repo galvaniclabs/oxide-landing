@@ -1,0 +1,19 @@
+---
+const GITHUB_URL = 'https://github.com/galvaniclabs/oxide';
+---
+
+<nav class="fixed top-0 left-0 right-0 z-50 border-b border-oxide-border backdrop-blur-md bg-oxide-bg/80">
+  <div class="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
+    <a href="/" class="text-lg font-bold tracking-tight text-oxide-text hover:text-white transition-colors">
+      oxide<span class="text-oxide-accent">.</span>
+    </a>
+    <a
+      href={GITHUB_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="text-sm text-oxide-text-mid border border-oxide-border rounded-full px-4 py-1.5 hover:border-oxide-accent hover:text-oxide-text transition-all"
+    >
+      GitHub &rarr;
+    </a>
+  </div>
+</nav>

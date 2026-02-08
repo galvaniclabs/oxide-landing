@@ -1,0 +1,29 @@
+---
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Oxide IDE — A modern IDE that runs in your terminal. Terminal-native. VSCode extensions. LLM agents as first-class citizens. Built in Rust." />
+    <meta name="theme-color" content="#0C1220" />
+    <meta property="og:title" content="Oxide IDE" />
+    <meta property="og:description" content="A modern IDE that runs in your terminal." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://oxideide.dev" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet" />
+    <title>{title}</title>
+  </head>
+  <body class="bg-oxide-bg text-oxide-text font-mono min-h-screen overflow-x-hidden">
+    <slot />
+  </body>
+</html>

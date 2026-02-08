@@ -1,0 +1,92 @@
+---
+---
+
+<div class="terminal-window rounded-lg border border-oxide-border shadow-accent-glow overflow-hidden max-w-3xl">
+  <!-- Title bar -->
+  <div class="bg-oxide-titlebar px-4 py-2.5 flex items-center gap-3 border-b border-oxide-border">
+    <div class="flex gap-1.5">
+      <span class="w-3 h-3 rounded-full bg-oxide-red"></span>
+      <span class="w-3 h-3 rounded-full bg-oxide-yellow"></span>
+      <span class="w-3 h-3 rounded-full bg-oxide-green"></span>
+    </div>
+    <span class="text-xs text-oxide-text-dim ml-1">oxide</span>
+  </div>
+
+  <!-- Terminal body -->
+  <div class="bg-oxide-surface p-5 text-sm leading-relaxed min-h-[200px]">
+    <div id="term-line-cmd" class="flex items-center">
+      <span class="text-oxide-accent mr-2">&#10095;</span>
+      <span id="term-typed" class="typing-cursor"></span>
+    </div>
+    <div id="term-output" class="hidden mt-2">
+      <span class="text-oxide-green">&#10003;</span>
+      <span class="text-oxide-text-mid"> lsp ready · 14 extensions · rust-analyzer</span>
+    </div>
+    <div id="term-agent-lines" class="mt-3 space-y-1 text-oxide-text-mid">
+      <div class="term-agent hidden">
+        <span class="text-oxide-accent">agent</span> debugging auth.rs:47
+      </div>
+      <div class="term-agent hidden">
+        <span class="text-oxide-text-dim ml-3">&hookrightarrow;</span>
+        <span class="text-oxide-accent-bright"> ide.debug.inspect</span> session_token &rarr; <span class="text-oxide-text-mid">None</span>
+      </div>
+      <div class="term-agent hidden">
+        <span class="text-oxide-text-dim ml-3">&hookrightarrow;</span>
+        <span class="text-oxide-accent-bright"> ide.editor.applyFix</span>
+        <span class="text-oxide-green"> &#10003;</span> test passing
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function runTerminalAnimation() {
+    const typed = document.getElementById('term-typed');
+    const output = document.getElementById('term-output');
+    const agentLines = document.querySelectorAll('.term-agent');
+
+    if (!typed || !output) return;
+
+    const command = 'oxide .';
+    let i = 0;
+
+    // Type command character by character
+    const typeInterval = setInterval(() => {
+      if (i < command.length) {
+        typed.textContent = command.slice(0, i + 1);
+        i++;
+      } else {
+        clearInterval(typeInterval);
+        typed.classList.remove('typing-cursor');
+
+        // Show output after typing
+        setTimeout(() => {
+          output.classList.remove('hidden');
+
+          // Stagger agent lines
+          agentLines.forEach((line, index) => {
+            setTimeout(() => {
+              line.classList.remove('hidden');
+              line.classList.add('animate-fade-in');
+            }, 500 * (index + 1));
+          });
+        }, 400);
+      }
+    }, 80);
+  }
+
+  // Run on page load
+  document.addEventListener('DOMContentLoaded', runTerminalAnimation);
+  // Also handle Astro page transitions
+  document.addEventListener('astro:page-load', runTerminalAnimation);
+</script>
+
+<style>
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fade-in {
+    animation: fade-in 0.4s ease forwards;
+  }
+</style>
