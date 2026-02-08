@@ -4,24 +4,76 @@ interface Props {
 }
 
 const { title } = Astro.props;
+const description = 'Oxide IDE — The IDE your AI agent can operate. Terminal-native. VSCode extensions. LLM agents debug, inspect, and test alongside you. Built in Rust.';
+const url = 'https://oxideide.dev';
+const ogImage = `${url}/og-image.png`;
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Oxide IDE — A modern IDE that runs in your terminal. Terminal-native. VSCode extensions. LLM agents as first-class citizens. Built in Rust." />
-    <meta name="theme-color" content="#0C1220" />
-    <meta property="og:title" content="Oxide IDE" />
-    <meta property="og:description" content="A modern IDE that runs in your terminal." />
+    <title>{title}</title>
+
+    <!-- SEO -->
+    <meta name="description" content={description} />
+    <meta name="keywords" content="IDE, terminal IDE, Rust IDE, AI coding, LLM agent, VSCode extensions, terminal editor, MCP, IDE Toolbox Protocol, Oxide IDE, Galvanic Labs" />
+    <meta name="author" content="Galvanic Labs" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={url} />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Oxide IDE — The IDE your AI agent can operate" />
+    <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://oxideide.dev" />
+    <meta property="og:url" content={url} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="1200" />
+    <meta property="og:image:alt" content="Oxide IDE — A modern IDE that runs in your terminal" />
+    <meta property="og:site_name" content="Oxide IDE" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Oxide IDE — The IDE your AI agent can operate" />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/favicon.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+    <meta name="theme-color" content="#0C1220" />
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet" />
-    <title>{title}</title>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Oxide IDE",
+      "description": "A modern IDE that runs in your terminal. Terminal-native, VSCode extensions, LLM agents as first-class citizens. Built in Rust.",
+      "url": url,
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Linux, macOS, Windows",
+      "license": "https://www.apache.org/licenses/LICENSE-2.0",
+      "programmingLanguage": "Rust",
+      "author": {
+        "@type": "Organization",
+        "name": "Galvanic Labs",
+        "url": "https://github.com/galvaniclabs"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    })} />
   </head>
   <body class="bg-oxide-bg text-oxide-text font-mono min-h-screen overflow-x-hidden">
     <slot />

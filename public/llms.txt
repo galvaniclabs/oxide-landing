@@ -1,0 +1,41 @@
+# Oxide IDE — llms.txt
+
+> A modern IDE that runs in your terminal.
+
+Oxide is a terminal-native IDE built in Rust by Galvanic Labs. It combines familiar IDE features (VSCode keybindings, mouse support, 50,000+ VSCode extensions) with first-class LLM agent integration via the IDE Toolbox Protocol (MCP-compatible).
+
+## Key Facts
+
+- Terminal-native IDE written in Rust
+- No modal editing — Ctrl+S, Ctrl+Z, click to place cursor
+- VSCode extension compatibility (50,000+ extensions)
+- LLM agents are first-class IDE citizens via IDE Toolbox Protocol
+- MCP-compatible: works with Claude Code, OpenCode, Aider, and any MCP agent
+- Agents can set breakpoints, inspect variables, run tests, stage git hunks
+- Built on: ratatui, tree-sitter, tokio, gitoxide, LSP, DAP
+- License: Apache 2.0
+- Organization: Galvanic Labs
+
+## IDE Toolbox Protocol Tools
+
+- ide.debug.setBreakpoint — Set breakpoints programmatically
+- ide.debug.inspectVariable — Inspect runtime variable values
+- ide.editor.goToDefinition — Navigate to symbol definitions
+- ide.editor.applyFix — Apply code fixes
+- ide.diagnostics.list — List errors and warnings
+- ide.test.run — Run test suites
+- ide.diff.stageHunk — Stage git hunks
+- ide.git.status — Get modified files
+
+## Architecture
+
+- TUI Frontend: Editor, File Tree, Terminal, Debug, Git, LLM Agent
+- IDE Toolbox Protocol: MCP-compatible tool interface for LLM agents
+- Core Services: LSP, DAP, Tree-sitter, gitoxide, tokio
+- Extension Host: Rust ↔ Node.js via JSON-RPC, VSCode API shim
+
+## Links
+
+- Website: https://oxideide.dev
+- GitHub: https://github.com/galvaniclabs/oxide
+- Founding Document: https://github.com/galvaniclabs/oxide/blob/main/FOUNDING_DOC.md

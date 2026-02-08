@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" width="1200" height="1200">
+  <!-- Outer background -->
+  <rect width="1200" height="1200" fill="#0C1220"/>
+
+  <!-- Window shadow -->
+  <rect x="68" y="73" width="1080" height="1080" rx="14" fill="#000" opacity="0.35"/>
+
+  <!-- Terminal window -->
+  <rect x="60" y="60" width="1080" height="1080" rx="14" fill="#131A2A"/>
+
+  <!-- Title bar -->
+  <rect x="61" y="61" width="1078" height="56" rx="13" fill="#1A2236"/>
+  <rect x="61" y="90" width="1078" height="27" fill="#1A2236"/>
+  <line x1="61" y1="117" x2="1139" y2="117" stroke="#0C1220" stroke-width="1"/>
+
+  <!-- Traffic lights -->
+  <circle cx="100" cy="89" r="9" fill="#E8583B"/>
+  <circle cx="130" cy="89" r="9" fill="#FFBD2E"/>
+  <circle cx="160" cy="89" r="9" fill="#28C840"/>
+
+  <!-- Title text -->
+  <text x="600" y="96" text-anchor="middle" fill="#8B949E" font-family="'Courier New', monospace" font-size="16">oxide — ~/projects/myapp</text>
+
+  <!-- ═══════ Content area ═══════ -->
+
+  <!-- Blue accent cursor line -->
+  <rect x="120" y="220" width="5" height="100" rx="2.5" fill="#5B9BD5"/>
+
+  <!-- OXIDE heading -->
+  <text x="145" y="316" fill="#E6EDF3" font-family="Arial, Helvetica, sans-serif" font-size="120" font-weight="900" letter-spacing="5">OXIDE</text>
+
+  <!-- Tagline -->
+  <text x="120" y="390" fill="#8B949E" font-family="'Courier New', monospace" font-size="28">The IDE your AI agent can operate.</text>
+
+  <!-- Separator line -->
+  <line x1="120" y1="430" x2="400" y2="430" stroke="#1E2A3A" stroke-width="2"/>
+
+  <!-- Feature description lines (terminal-style) -->
+  <text x="120" y="500" fill="#3D4550" font-family="'Courier New', monospace" font-size="20">01</text>
+  <text x="170" y="500" fill="#E6EDF3" font-family="'Courier New', monospace" font-size="20">Terminal-native. No Electron.</text>
+
+  <text x="120" y="545" fill="#3D4550" font-family="'Courier New', monospace" font-size="20">02</text>
+  <text x="170" y="545" fill="#E6EDF3" font-family="'Courier New', monospace" font-size="20">VSCode extensions, zero lock-in.</text>
+
+  <text x="120" y="590" fill="#3D4550" font-family="'Courier New', monospace" font-size="20">03</text>
+  <text x="170" y="590" fill="#E6EDF3" font-family="'Courier New', monospace" font-size="20">LLM agents as first-class citizens.</text>
+
+  <text x="120" y="635" fill="#3D4550" font-family="'Courier New', monospace" font-size="20">04</text>
+  <text x="170" y="635" fill="#E6EDF3" font-family="'Courier New', monospace" font-size="20">Written in Rust. Fast by default.</text>
+
+  <!-- ═══════ Feature Badges ═══════ -->
+
+  <!-- terminal -->
+  <rect x="120" y="700" width="150" height="44" rx="7" fill="none" stroke="#5B9BD5" stroke-width="1.5"/>
+  <text x="195" y="728" text-anchor="middle" fill="#5B9BD5" font-family="'Courier New', monospace" font-size="17">terminal</text>
+
+  <!-- vscode extensions -->
+  <rect x="290" y="700" width="240" height="44" rx="7" fill="none" stroke="#28C840" stroke-width="1.5"/>
+  <text x="410" y="728" text-anchor="middle" fill="#28C840" font-family="'Courier New', monospace" font-size="17">vscode extensions</text>
+
+  <!-- rust -->
+  <rect x="550" y="700" width="100" height="44" rx="7" fill="none" stroke="#FFBD2E" stroke-width="1.5"/>
+  <text x="600" y="728" text-anchor="middle" fill="#FFBD2E" font-family="'Courier New', monospace" font-size="17">rust</text>
+
+  <!-- llm native -->
+  <rect x="670" y="700" width="170" height="44" rx="7" fill="none" stroke="#7BB3E8" stroke-width="1.5"/>
+  <text x="755" y="728" text-anchor="middle" fill="#7BB3E8" font-family="'Courier New', monospace" font-size="17">llm native</text>
+
+  <!-- ═══════ Bottom Prompt ═══════ -->
+
+  <text x="120" y="1050" fill="#28C840" font-family="'Courier New', monospace" font-size="26" font-weight="bold">›</text>
+  <text x="148" y="1050" fill="#E6EDF3" font-family="'Courier New', monospace" font-size="26">oxide .</text>
+  <rect x="270" y="1028" width="15" height="28" rx="2" fill="#5B9BD5" opacity="0.8"/>
+
+  <!-- URL watermark -->
+  <text x="1080" y="1050" text-anchor="end" fill="#3D4550" font-family="'Courier New', monospace" font-size="20">oxideide.dev</text>
+</svg>
