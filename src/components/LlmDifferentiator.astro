@@ -37,6 +37,24 @@
   </div>
 </section>
 
+<style is:global>
+  @media (max-width: 640px) {
+    #llm-terminal {
+      padding: 0.75rem;
+      font-size: 0.75rem;
+      line-height: 2;
+    }
+    #llm-terminal .llm-line.flex {
+      flex-wrap: wrap;
+    }
+    #llm-terminal .llm-line.flex > span:last-child {
+      margin-left: 0;
+      padding-left: 1.75rem;
+      width: 100%;
+    }
+  }
+</style>
+
 <script>
   const scenarios = [
     {
