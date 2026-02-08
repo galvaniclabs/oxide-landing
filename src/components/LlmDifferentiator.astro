@@ -1,16 +1,7 @@
 ---
-const tools = [
-  { name: 'ide.debug.setBreakpoint', desc: 'file, line' },
-  { name: 'ide.debug.inspectVariable', desc: 'name \u2192 value' },
-  { name: 'ide.diff.stageHunk', desc: 'file, hunk' },
-  { name: 'ide.test.run', desc: 'suite \u2192 pass/fail' },
-  { name: 'ide.git.status', desc: '\u2192 modified files' },
-  { name: 'ide.diagnostics.list', desc: '\u2192 errors, warnings' },
-  { name: 'ide.editor.goToDefinition', desc: 'symbol \u2192 location' },
-];
 ---
 
-<section class="py-24 md:py-32">
+<section class="py-14 md:py-20" id="llm-section">
   <div class="max-w-6xl mx-auto px-6">
     <div class="reveal">
       <span class="text-xs font-semibold uppercase tracking-[0.2em] text-oxide-accent">
@@ -23,21 +14,20 @@ const tools = [
       </h2>
     </div>
 
-    <!-- Toolbox panel -->
-    <div class="reveal mt-10 rounded-lg border border-oxide-border bg-oxide-surface overflow-hidden max-w-3xl">
-      <div class="px-5 py-3 border-b border-oxide-border">
-        <span class="text-xs font-semibold uppercase tracking-[0.15em] text-oxide-text-dim">
-          IDE Toolbox Protocol <span class="text-oxide-text-dim font-normal">(MCP-compatible)</span>
-        </span>
+    <!-- Live agent story terminal -->
+    <div class="reveal mt-10 rounded-lg border border-oxide-border overflow-hidden max-w-3xl shadow-accent-glow">
+      <!-- Title bar -->
+      <div class="bg-oxide-titlebar px-4 py-2.5 flex items-center gap-3 border-b border-oxide-border">
+        <div class="flex gap-1.5">
+          <span class="w-3 h-3 rounded-full bg-oxide-red"></span>
+          <span class="w-3 h-3 rounded-full bg-oxide-yellow"></span>
+          <span class="w-3 h-3 rounded-full bg-oxide-green"></span>
+        </div>
+        <span class="text-xs text-oxide-text-dim ml-1">oxide &mdash; agent session</span>
       </div>
-      <div class="p-5 space-y-2 text-sm">
-        {tools.map((tool) => (
-          <div class="flex items-start gap-3">
-            <span class="text-oxide-accent select-none shrink-0">&rarr;</span>
-            <span class="text-oxide-accent-bright shrink-0 min-w-[260px]">{tool.name}</span>
-            <span class="text-oxide-text-dim">{tool.desc}</span>
-          </div>
-        ))}
+
+      <!-- Terminal body -->
+      <div class="bg-oxide-surface p-5 text-sm leading-loose min-h-[280px]" id="llm-terminal">
       </div>
     </div>
 
@@ -46,3 +36,144 @@ const tools = [
     </p>
   </div>
 </section>
+
+<script>
+  const scenarios = [
+    {
+      header: { label: 'agent', action: 'investigating test failure in', target: 'payments.rs' },
+      steps: [
+        { tool: 'ide.diagnostics.list', result: '1 error: type mismatch at line 84', resultClass: '' },
+        { tool: 'ide.editor.goToDefinition', result: 'process_payment() in billing.rs:12', resultClass: '' },
+        { tool: 'ide.debug.setBreakpoint', result: 'billing.rs:12 <span class="text-oxide-red">&#9679;</span>', resultClass: '' },
+        { tool: 'ide.debug.inspectVariable', result: 'amount = <span class="text-oxide-yellow">-1.00</span>', resultClass: '' },
+        { tool: 'ide.editor.applyFix', result: 'added validation guard', resultClass: '' },
+        { tool: 'ide.test.run', result: '&#10003; 47/47 passing', resultClass: 'text-oxide-green' },
+      ],
+    },
+    {
+      header: { label: 'agent', action: 'reviewing auth flow in', target: 'session.rs' },
+      steps: [
+        { tool: 'ide.diagnostics.list', result: 'warning: unchecked token expiry', resultClass: 'text-oxide-yellow' },
+        { tool: 'ide.editor.goToDefinition', result: 'validate_session() in auth.rs:31', resultClass: '' },
+        { tool: 'ide.debug.inspectVariable', result: 'expires_at = <span class="text-oxide-yellow">None</span>', resultClass: '' },
+        { tool: 'ide.editor.applyFix', result: 'added expiry check + refresh logic', resultClass: '' },
+        { tool: 'ide.diff.stageHunk', result: 'auth.rs: +12 -3', resultClass: '' },
+        { tool: 'ide.test.run', result: '&#10003; 83/83 passing', resultClass: 'text-oxide-green' },
+      ],
+    },
+    {
+      header: { label: 'agent', action: 'profiling slow endpoint', target: '/api/search' },
+      steps: [
+        { tool: 'ide.diagnostics.list', result: 'perf: query takes 3.2s', resultClass: 'text-oxide-yellow' },
+        { tool: 'ide.editor.goToDefinition', result: 'search_handler() in routes.rs:89', resultClass: '' },
+        { tool: 'ide.debug.setBreakpoint', result: 'routes.rs:94 <span class="text-oxide-red">&#9679;</span>', resultClass: '' },
+        { tool: 'ide.debug.inspectVariable', result: 'query_plan = <span class="text-oxide-yellow">"sequential scan"</span>', resultClass: '' },
+        { tool: 'ide.editor.applyFix', result: 'added index + pagination', resultClass: '' },
+        { tool: 'ide.test.run', result: '&#10003; 61/61 passing &middot; 3.2s &rarr; 45ms', resultClass: 'text-oxide-green' },
+      ],
+    },
+    {
+      header: { label: 'agent', action: 'refactoring database layer in', target: 'db.rs' },
+      steps: [
+        { tool: 'ide.editor.goToDefinition', result: 'find_user() called from 7 locations', resultClass: '' },
+        { tool: 'ide.diagnostics.list', result: '3 warnings: deprecated query pattern', resultClass: 'text-oxide-yellow' },
+        { tool: 'ide.editor.applyFix', result: 'migrated to connection pool', resultClass: '' },
+        { tool: 'ide.test.run', result: '&#10007; 2 failing', resultClass: 'text-oxide-red' },
+        { tool: 'ide.debug.inspectVariable', result: 'pool_size = <span class="text-oxide-yellow">0</span>', resultClass: '' },
+        { tool: 'ide.editor.applyFix', result: 'initialized pool in setup()', resultClass: '' },
+        { tool: 'ide.test.run', result: '&#10003; 156/156 passing', resultClass: 'text-oxide-green' },
+      ],
+    },
+  ];
+
+  function buildScenarioHTML(scenario) {
+    const header = `<div class="llm-line" style="opacity:0">
+      <span class="text-oxide-accent font-semibold">${scenario.header.label}</span>
+      <span class="text-oxide-text-mid"> ${scenario.header.action} </span>
+      <span class="text-oxide-text">${scenario.header.target}</span>
+    </div>`;
+
+    const steps = scenario.steps.map(s => {
+      const cls = s.resultClass || 'text-oxide-text-dim';
+      return `<div class="llm-line flex items-start" style="opacity:0">
+        <span class="text-oxide-text-dim mr-2 shrink-0">&nbsp;&nbsp;&hookrightarrow;</span>
+        <span class="text-oxide-accent-bright">${s.tool}</span>
+        <span class="${cls} ml-auto pl-4">&rarr; ${s.result}</span>
+      </div>`;
+    }).join('');
+
+    return header + `<div class="mt-2 space-y-1">${steps}</div>`;
+  }
+
+  function animateLines(container) {
+    return new Promise((resolve) => {
+      const lines = container.querySelectorAll('.llm-line');
+      lines.forEach((line, i) => {
+        setTimeout(() => {
+          line.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
+          line.style.opacity = '1';
+          line.style.transform = 'translateY(0)';
+          if (i === lines.length - 1) {
+            setTimeout(resolve, 2500); // pause after last line
+          }
+        }, 400 * i);
+      });
+
+      // Set initial transform
+      lines.forEach((line) => {
+        line.style.transform = 'translateY(6px)';
+      });
+    });
+  }
+
+  function fadeOut(container) {
+    return new Promise((resolve) => {
+      container.style.transition = 'opacity 0.4s ease';
+      container.style.opacity = '0';
+      setTimeout(resolve, 400);
+    });
+  }
+
+  function fadeIn(container) {
+    container.style.opacity = '1';
+  }
+
+  async function runLlmRotation() {
+    const terminal = document.getElementById('llm-terminal');
+    if (!terminal) return;
+
+    let currentIndex = 0;
+
+    async function playScenario() {
+      terminal.innerHTML = buildScenarioHTML(scenarios[currentIndex]);
+      fadeIn(terminal);
+      await animateLines(terminal);
+      await fadeOut(terminal);
+      currentIndex = (currentIndex + 1) % scenarios.length;
+      playScenario();
+    }
+
+    // Start when section scrolls into view
+    const section = document.getElementById('llm-section');
+    if (!section) return;
+
+    let hasStarted = false;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasStarted) {
+            hasStarted = true;
+            observer.unobserve(entry.target);
+            playScenario();
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    observer.observe(section);
+  }
+
+  document.addEventListener('DOMContentLoaded', runLlmRotation);
+  document.addEventListener('astro:page-load', runLlmRotation);
+</script>

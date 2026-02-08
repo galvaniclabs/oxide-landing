@@ -1,32 +1,102 @@
 ---
-const features = [
-  {
-    title: 'No modal editing.',
-    description: 'Ctrl+S, Ctrl+Z, Ctrl+P, F5, F12. Full mouse. Zero learning curve.',
-    borderColor: 'border-oxide-accent',
-  },
-  {
-    title: 'VSCode extensions.',
-    description: '50,000+ extensions. Language servers, debuggers, linters. They just work.',
-    borderColor: 'border-oxide-green',
-  },
-  {
-    title: 'Written in Rust.',
-    description: 'Starts in ms. Million-line files. Single binary. No Electron.',
-    borderColor: 'border-oxide-yellow',
-  },
-];
 ---
 
-<section class="py-24 md:py-32">
+<section class="py-14 md:py-20">
   <div class="max-w-6xl mx-auto px-6">
     <div class="reveal grid grid-cols-1 md:grid-cols-3 gap-6">
-      {features.map((feature) => (
-        <div class={`border-l-[3px] ${feature.borderColor} bg-oxide-surface/50 rounded-r-lg px-6 py-5`}>
-          <h3 class="font-bold text-oxide-text">{feature.title}</h3>
-          <p class="mt-2 text-sm text-oxide-text-mid leading-relaxed">{feature.description}</p>
+
+      <!-- No modal editing -->
+      <div class="border-l-[3px] border-oxide-accent bg-oxide-surface/50 rounded-r-lg px-6 py-6">
+        <!-- The pain -->
+        <div class="text-sm text-oxide-text-dim line-through leading-relaxed decoration-oxide-text-dim/40">
+          i, Esc, :wq, dd, yy...<br />
+          Modal editing. Leader keys.<br />
+          A language before your language.
         </div>
-      ))}
+        <!-- Divider with arrow -->
+        <div class="flex items-center gap-2 my-4">
+          <div class="flex-1 h-px bg-oxide-border"></div>
+          <span class="text-oxide-accent text-sm">&darr;</span>
+          <div class="flex-1 h-px bg-oxide-border"></div>
+        </div>
+        <!-- The solution -->
+        <div class="flex items-center gap-3">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="shrink-0">
+            <rect x="1" y="7" width="22" height="14" rx="2" stroke="#5B9BD5" stroke-width="1.5"/>
+            <rect x="4" y="10" width="3" height="2" rx="0.5" fill="#5B9BD5" opacity="0.6"/>
+            <rect x="8.5" y="10" width="3" height="2" rx="0.5" fill="#5B9BD5" opacity="0.6"/>
+            <rect x="13" y="10" width="3" height="2" rx="0.5" fill="#5B9BD5" opacity="0.6"/>
+            <rect x="17.5" y="10" width="3" height="2" rx="0.5" fill="#5B9BD5" opacity="0.6"/>
+            <rect x="4" y="13.5" width="3" height="2" rx="0.5" fill="#5B9BD5" opacity="0.6"/>
+            <rect x="8.5" y="13.5" width="7" height="2" rx="0.5" fill="#5B9BD5" opacity="0.8"/>
+            <rect x="17" y="13.5" width="3.5" height="2" rx="0.5" fill="#5B9BD5" opacity="0.6"/>
+            <rect x="7" y="17" width="10" height="2" rx="0.5" fill="#5B9BD5" opacity="0.4"/>
+            <line x1="12" y1="2" x2="12" y2="7" stroke="#5B9BD5" stroke-width="1.5" stroke-linecap="round"/>
+            <polyline points="9.5,4.5 12,2 14.5,4.5" stroke="#5B9BD5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+          <h3 class="font-bold text-oxide-text text-lg">No modal editing.</h3>
+        </div>
+        <p class="mt-1.5 text-sm text-oxide-text-mid leading-relaxed">
+          Ctrl+S. Ctrl+Z. Click.<br />
+          You already know this.
+        </p>
+      </div>
+
+      <!-- VSCode extensions -->
+      <div class="border-l-[3px] border-oxide-green bg-oxide-surface/50 rounded-r-lg px-6 py-6">
+        <!-- The pain -->
+        <div class="text-sm text-oxide-text-dim line-through leading-relaxed decoration-oxide-text-dim/40">
+          50 plugins. 200 lines of Lua.<br />
+          Breaks every update.<br />
+          Half-day to get LSP working.
+        </div>
+        <!-- Divider with arrow -->
+        <div class="flex items-center gap-2 my-4">
+          <div class="flex-1 h-px bg-oxide-border"></div>
+          <span class="text-oxide-green text-sm">&darr;</span>
+          <div class="flex-1 h-px bg-oxide-border"></div>
+        </div>
+        <!-- The solution -->
+        <div class="flex items-center gap-3">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="shrink-0">
+            <path d="M14 3a2.5 2.5 0 0 0-5 0v2H6a2 2 0 0 0-2 2v3h2a2.5 2.5 0 0 1 0 5H4v3a2 2 0 0 0 2 2h3v-2a2.5 2.5 0 0 1 5 0v2h3a2 2 0 0 0 2-2v-3h-2a2.5 2.5 0 0 1 0-5h2V7a2 2 0 0 0-2-2h-3V3z" stroke="#28C840" stroke-width="1.5"/>
+          </svg>
+          <h3 class="font-bold text-oxide-text text-lg">VSCode extensions.</h3>
+        </div>
+        <p class="mt-1.5 text-sm text-oxide-text-mid leading-relaxed">
+          50,000+ extensions.<br />
+          Language servers, debuggers, linters.<br />
+          They just work.
+        </p>
+      </div>
+
+      <!-- Written in Rust -->
+      <div class="border-l-[3px] border-oxide-yellow bg-oxide-surface/50 rounded-r-lg px-6 py-6">
+        <!-- The pain -->
+        <div class="text-sm text-oxide-text-dim line-through leading-relaxed decoration-oxide-text-dim/40">
+          2GB RAM. 10s cold start.<br />
+          Electron strikes again.<br />
+          Fan spins on a 200-line file.
+        </div>
+        <!-- Divider with arrow -->
+        <div class="flex items-center gap-2 my-4">
+          <div class="flex-1 h-px bg-oxide-border"></div>
+          <span class="text-oxide-yellow text-sm">&darr;</span>
+          <div class="flex-1 h-px bg-oxide-border"></div>
+        </div>
+        <!-- The solution -->
+        <div class="flex items-center gap-3">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="shrink-0">
+            <path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" stroke="#FFBD2E" stroke-width="1.5" stroke-linejoin="round"/>
+          </svg>
+          <h3 class="font-bold text-oxide-text text-lg">Written in Rust.</h3>
+        </div>
+        <p class="mt-1.5 text-sm text-oxide-text-mid leading-relaxed">
+          Single binary. Starts in ms.<br />
+          Million-line files. No Electron.
+        </p>
+      </div>
+
     </div>
   </div>
 </section>
